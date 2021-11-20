@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|Poppins">
+  </head>
+  <style>
+  #customers {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  #customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  #customers tr:nth-child(even){background-color: #f2f2f2;}
+  #customers tr:hover {background-color: #ddd;}
+  #customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4682B4;
+    color: white;
+  }
+  h1 {
+    font-family: Poppins, sans-serif;
+    font-weight: bold;
+    text-align: center;
+  }
+  h3 {
+    text-align: center
+  }
+  h4 {
+    text-align: center
+  }
+  body {
+    font-family: Poppins, sans-serif;
+    font-size: 16px;
+  }
+  hr {
+  border: 0;
+  width: 100%;
+  height: 1px;
+  background-image: linear-gradient(
+    to right,
+    rgba(120, 120, 120, 0),
+    rgba(120, 120, 120, 0.75),
+    rgba(120, 120, 120, 0)
+  );
+}
+  </style>
+  <body>
+    <div class="mail">
+      <h1><strong>União</strong> Sistemas</h1>
+      <h3><strong>Olá {{ nameCustomer }}, segue os dados do serviço solicitado!</strong></h3>
+      <hr>
+
+      <h3>Valor do serviço</h3>
+      <h4>R$ {{ servico.value }}</h4>
+      <br>
+
+      <h3>Data do serviço</h3>
+      <h4 id="data">{{ servico.date }}</h4>
+      <br>
+
+      <h3>Descrição do serviço</h3>
+      <h4>{{ servico.describe }}</h4>
+      <br>
+    </div>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+      var data = moment(servico.date).format("L")
+  </script>
+</html>
