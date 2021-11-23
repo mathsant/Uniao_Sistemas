@@ -5,29 +5,14 @@ import App from "./App";
 import store from "./config/store";
 import "./config/msgs";
 import router from "./config/router";
-
+import VueSweetalert2 from "vue-sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
 import "./config/bootstrap";
 Vue.config.productionTip = false;
 import http from "./http";
-
 Vue.prototype.$http = http;
 
-import VueHtmlToPaper from "vue-html-to-paper";
-
-const options = {
-  name: "_blank",
-  spec: ["fullscreen=yes", "titlebar=yes", "scrollbars=yes"],
-  styles: [
-    "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css",
-    "https://unpkg.com/kidlat-css/css/kidlat.css",
-  ],
-  timeout: 1000,
-  autoClose: true,
-  windowTitle: window.document.title,
-};
-
-Vue.use(VueHtmlToPaper, options);
-Vue.use(VueHtmlToPaper);
+Vue.use(VueSweetalert2);
 Vue.use(VueTheMask);
 
 new Vue({

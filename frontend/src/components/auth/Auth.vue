@@ -7,7 +7,7 @@
               <div class="auth-title">Login</div>
               <input type="text" v-model="user.email" name="email" placeholder="E-mail" required>
               <input type="password" v-model="user.password" name="password" placeholder="Senha" required>
-              <b-button type="submit" block variant="primary">Entrar</b-button>
+              <b-button type="submit" block variant="primary" @click.prevent="login">Entrar</b-button>
             </form>
         </div>
     </div>
@@ -31,7 +31,10 @@ export default {
           localStorage.setItem("token", response.data.token);
           this.$router.push({ name: "home" });
         })
-        .catch(showError);
+        .catch(this.errorLogin);
+    },
+    errorLogin() {
+      this.$swal("Erro", "Credenciais invalidas!", "error");
     },
   },
 };

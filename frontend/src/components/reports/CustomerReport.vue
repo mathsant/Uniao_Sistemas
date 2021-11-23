@@ -9,10 +9,7 @@
           <h3>Selecione a data final</h3>
           <b-form-input v-model="report.dateFrom" type="date" placeholder="Informe o e-mail"></b-form-input>
           <br>
-          <h3>Informe o e-mail no qual sera enviado o relatorio...</h3>
-          <b-form-input v-model="report.email" placeholder="Informe o e-mail"></b-form-input>
-          <br>
-          <b-button block pill variant="success" @click="sendMail">Enviar</b-button>
+          <b-button block pill variant="success" @click="generateReport">Gerar Relatorio</b-button>
       </b-card>
     </div>
 </template>
@@ -20,6 +17,7 @@
 <script>
 import PageTitle from "../../components/template/PageTitle.vue";
 import { showError } from "../../global";
+import { v4 as uuid } from "uuid";
 
 export default {
   components: { PageTitle },
@@ -27,18 +25,24 @@ export default {
   data() {
     return {
       report: {},
-      users: {
-        name: "teste",
-        idade: 22,
-      },
     };
   },
   methods: {
-    sendMail() {
+    generateReport() {
       const url = "/reports/manager";
       this.$http
-        .post(url, this.report)
-        .then(() => {
+        .post(url, this.report, {
+          responseType: "blob",
+          timeout: 10000,
+        })
+        .then((res) => {
+          let url = window.URL.createObjectURL(res.data);
+          let a = document.createElement("a");
+          document.body.appendChild(a);
+          a.setAttribute("style", "display: none");
+          a.href = url;
+          a.download = `${uuid()}.xlsx`;
+          a.click();
           this.$toasted.global.defaultSuccess();
           this.reset();
         })

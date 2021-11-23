@@ -2,7 +2,7 @@
   <div class="home">
       <PageTitle icon="fa fa-home" main="Dashboard" sub="Página inicial" />
       <div class="stats">
-        <Stat title="Colaboradores" :value="stat.amountProvider" icon="fa fa-users" color="#d54d50"/>
+        <Stat title="Colaboradores" :value="stat.amountCollaborators" icon="fa fa-users" color="#d54d50"/>
         <Stat title="Clientes" :value="stat.amountCustomers" icon="fa fa-user" color="#3bc480"/>
         <Stat title="Serviços" :value="stat.amountServices" icon="fa fa-cogs" color="#3282cd"/>
       </div>

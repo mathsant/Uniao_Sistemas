@@ -11,6 +11,7 @@ import CarrosAdmin from "../components/admin/CarrosAdmin";
 import ServicesAdmin from "../components/admin/ServicesAdmin";
 import ProvidersAdmin from "../components/admin/ProvidersAdmin";
 import CollaboratorsAdmin from "../components/admin/CollaboratorsAdmin";
+import UsersAdmin from "../components/admin/UsersAdmin";
 
 Vue.use(VueRouter);
 
@@ -46,6 +47,11 @@ const router = new VueRouter({
       name: "collaborators",
       path: "/collaborators",
       component: CollaboratorsAdmin,
+    },
+    {
+      name: "users",
+      path: "/users",
+      component: UsersAdmin,
     },
     {
       name: "note",
