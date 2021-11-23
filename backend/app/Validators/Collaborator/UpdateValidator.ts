@@ -8,12 +8,16 @@ export class UpdateValidator {
     name: schema.string({ trim: true, escape: true }),
     email: schema.string({ trim: true, escape: true }, [rules.email()]),
     phone: schema.string({ trim: true, escape: true }),
-    admissionDate: schema.string(),
+    admissionDate: schema.string.optional(),
     cpf: schema.string({ trim: true, escape: true }),
   })
 
   public messages = {
-    required: 'O {{ field }} é obrigatorio ',
-    email: 'O e-mail não é válido!',
+    'name.required': 'O nome é obrigatorio!',
+    'email.required': 'O e-mail é obrigatorio!',
+    'phone.required': 'O telefone é obrigatorio!',
+    'admissionDate.required': 'A data de admissão é obrigatoria!',
+    'cpf.required': 'O CPF é obrigatorio!',
+    'email': 'O e-mail não é válido!',
   }
 }

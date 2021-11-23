@@ -44,7 +44,7 @@
           <b-form-input v-model="filter" type="search" placeholder="Pesquisa de serviços..."></b-form-input>
         </b-input-group>
       <br>
-      <b-table id="my-table" hover striped :items="services" :fields="fields" :filter="filter">
+      <b-table id="my-table" hover striped :items="services" :fields="fields" :filter="filter" :per-page="perPage" :current-page="currentPage">
         <template slot="value" slot-scope="value">
           R${{ value.item.value }}
         </template>
@@ -66,11 +66,9 @@
           <b-button variant="danger" @click="loadService(data.item, 'remove')" class="mr-2">
             <i class="fa fa-trash"></i>
           </b-button>
-          <b-button variant="primary" @click="loadService(data.item, 'remove')">
-            <i class="fa fa-eye"></i>
-          </b-button>
         </template>
       </b-table>
+      <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" aria-controls="my-table"></b-pagination>
   </div>
 </template>
 
@@ -84,6 +82,8 @@ export default {
   name: "ServicesAdmin",
   data() {
     return {
+      perPage: 3,
+      currentPage: 1,
       mode: "save",
       service: {},
       services: [],
@@ -104,6 +104,11 @@ export default {
         { key: "actions", label: "Ações" },
       ],
     };
+  },
+  computed: {
+    rows() {
+      return this.services.length;
+    },
   },
   methods: {
     loadServices() {

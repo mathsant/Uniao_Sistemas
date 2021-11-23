@@ -29,7 +29,7 @@
           <b-form-input v-model="filter" type="search" placeholder="Pesquisa de fornecedores..."></b-form-input>
         </b-input-group>
       <br>
-      <b-table hover striped :items="providers" :fields="fields" :filter="filter">
+      <b-table hover striped :items="providers" :fields="fields" :filter="filter" :per-page="perPage" :current-page="currentPage">
         <template slot="actions" slot-scope="data">
           <b-button variant="warning" @click="loadProvider(data.item)" class="mr-2">
             <i class="fa fa-pencil"></i>
@@ -39,6 +39,8 @@
           </b-button>
         </template>
       </b-table>
+      <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" aria-controls="my-table"></b-pagination>
+
   </div>
 </template>
 
@@ -51,6 +53,8 @@ export default {
   name: "ProvidersAdmin",
   data() {
     return {
+      perPage: 3,
+      currentPage: 1,
       mode: "save",
       filter: "",
       provider: {},
@@ -62,6 +66,11 @@ export default {
         { key: "actions", label: "Ações" },
       ],
     };
+  },
+  computed: {
+    rows() {
+      return this.providers.length;
+    },
   },
   methods: {
     loadProviders() {

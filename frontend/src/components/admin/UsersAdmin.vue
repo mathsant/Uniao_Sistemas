@@ -10,8 +10,8 @@
             </b-form-group>
           </b-col>
           <b-col md="6" sm="12">
-            <b-form-group label="Senha:" label-for="user-password">
-              <b-form-input id="user-password" type="text" v-model="user.password" placeholder="Digite a senha do usuário..." :readonly="mode === 'remove'" required/>
+            <b-form-group label="Alterar senha:" label-for="user-password">
+              <b-form-input id="user-password" type="password" v-model="user.password" placeholder="Digite a senha do usuário..." :readonly="mode === 'remove'" required/>
             </b-form-group>
           </b-col>
           <b-col md="6" sm="12">
@@ -75,14 +75,22 @@ export default {
       this.loadUsers();
     },
     save() {
-      const method = this.user.id ? "put" : "post";
-      const id = this.user.id ? `/${this.user.id}` : "";
-      this.$http[method](`/users${id}`, this.user)
-        .then(() => {
-          this.$toasted.global.defaultSuccess();
-          this.reset();
-        })
-        .catch(showError);
+      if (this.user.password !== this.user.pass) {
+        this.$swal(
+          "Erro!",
+          "As senhas não são iguais, favor verificar!",
+          "error"
+        );
+      } else {
+        const method = this.user.id ? "put" : "post";
+        const id = this.user.id ? `/${this.user.id}` : "";
+        this.$http[method](`/users${id}`, this.user)
+          .then(() => {
+            this.$toasted.global.defaultSuccess();
+            this.reset();
+          })
+          .catch(showError);
+      }
     },
     remove() {
       const id = this.user.id;

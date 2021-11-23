@@ -44,7 +44,7 @@
           <b-form-input v-model="filter" type="search" placeholder="Pesquisa de automóvel..."></b-form-input>
         </b-input-group>
       <br>
-      <b-table hover striped :items="cars" :fields="fields" :filter="filter">
+      <b-table id="my-table" hover striped :items="cars" :fields="fields" :filter="filter" :per-page="perPage" :current-page="currentPage">
         <template slot="actions" slot-scope="data">
           <b-button variant="warning" @click="loadCar(data.item)" class="mr-2">
             <i class="fa fa-pencil"></i>
@@ -54,6 +54,7 @@
           </b-button>
         </template>
       </b-table>
+      <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" aria-controls="my-table" align="fill"></b-pagination>
   </div>
 </template>
 
@@ -66,6 +67,8 @@ export default {
   name: "CarrosAdmin",
   data() {
     return {
+      perPage: 3,
+      currentPage: 1,
       mode: "save",
       filter: "",
       car: {},
@@ -93,6 +96,11 @@ export default {
         { key: "actions", label: "Ações" },
       ],
     };
+  },
+  computed: {
+    rows() {
+      return this.cars.length;
+    },
   },
   methods: {
     loadCars() {

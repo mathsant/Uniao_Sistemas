@@ -39,7 +39,7 @@
           <b-form-input v-model="filter" type="search" placeholder="Pesquisa de colaboradores..."></b-form-input>
         </b-input-group>
       <br>
-      <b-table hover striped :items="collaborators" :fields="fields" :filter="filter">
+      <b-table hover striped :items="collaborators" :fields="fields" :filter="filter" :per-page="perPage" :current-page="currentPage">
         <template slot="admission_date" slot-scope="date">
           {{ date.item.admission_date | moment }}
         </template>
@@ -52,6 +52,7 @@
           </b-button>
         </template>
       </b-table>
+      <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" aria-controls="my-table" align="fill"></b-pagination>
   </div>
 </template>
 
@@ -65,12 +66,13 @@ export default {
   name: "CollaboratorsAdmin",
   data() {
     return {
+      perPage: 3,
+      currentPage: 1,
       mode: "save",
       filter: "",
       collaborator: {},
       collaborators: [],
       fields: [
-        { key: "id", label: "Código", sortable: true },
         { key: "name", label: "Nome", sortable: true },
         { key: "cpf", label: "CPF", sortable: true },
         { key: "email", label: "E-mail", sortable: true },
@@ -79,6 +81,11 @@ export default {
         { key: "actions", label: "Ações" },
       ],
     };
+  },
+  computed: {
+    rows() {
+      return this.collaborators.length;
+    },
   },
   methods: {
     loadCollaborators() {

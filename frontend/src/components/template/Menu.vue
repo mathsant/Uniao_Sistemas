@@ -5,9 +5,9 @@
       <li><router-link to="/"><i class="fa fa-home"></i> Home</router-link></li>
       <li><router-link to="/customers"><i class="fa fa-user"></i> Clientes</router-link></li>
       <li><router-link to="/cars"><i class="fa fa-car"></i> Automóveis</router-link></li>
+      <li><router-link to="/collaborators"><i class="fa fa-users"></i> Colaboradores</router-link></li>
       <li><router-link to="/services"><i class="fa fa-cogs"></i> Serviços</router-link></li>
       <li><router-link to="/providers"><i class="fa fa-address-book"></i> Fornecedores</router-link></li>
-      <li><router-link to="/collaborators"><i class="fa fa-users"></i> Colaboradores</router-link></li>
       <li><router-link to="/note"><i class="fa fa-envelope-square"></i> Nota branca</router-link></li>
       <li><router-link to="/reports"><i class="fa fa-sticky-note"></i> Relatorio de Serviços</router-link></li>
     </ul>
@@ -25,7 +25,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .menu-side {
   grid-area: menu;
   background: linear-gradient(to right, #232526, #414345);
@@ -64,6 +64,10 @@ export default {
   padding-left: 15px;
   box-sizing: border-box;
   transition: 0.4s;
+}
+
+ul li:hover a {
+  padding-left: 40px;
 }
 
 .menu a,
