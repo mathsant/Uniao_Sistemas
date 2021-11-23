@@ -2,6 +2,7 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Service from 'App/Models/Service'
 import Mail from '@ioc:Adonis/Addons/Mail'
 import generateReport from '../../services/create.report'
+import moment from 'moment'
 
 export default class ReportsController {
   public async customer({ request }: HttpContextContract) {
@@ -18,7 +19,7 @@ export default class ReportsController {
       message.htmlView('reportForCustomer', {
         servico: {
           value: servicoValue,
-          date: servicoData,
+          date: moment(servicoData).format('L'),
           describe: servicoDescribe,
         },
         nameCustomer,

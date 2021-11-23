@@ -1,8 +1,14 @@
 import * as xlsx from 'xlsx'
+import moment from 'moment'
 
-const reportHeaders = ['Valor', 'Status do Serviço', 'Descrição do serviço']
+const reportHeaders = ['Valor', 'Data do Serviço', 'Status do Serviço', 'Descrição do serviço']
 
-const mapReportFields = (service) => [service.value, service.status, service.describe]
+const mapReportFields = (service) => [
+  service.value,
+  moment(service.date).format('L'),
+  service.status,
+  service.describe,
+]
 
 export default function (serviceList) {
   const wb = xlsx.utils.book_new()
