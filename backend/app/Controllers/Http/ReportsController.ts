@@ -1,6 +1,7 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Service from 'App/Models/Service'
 import Mail from '@ioc:Adonis/Addons/Mail'
+import generateReport from '../../services/create.report'
 
 export default class ReportsController {
   public async customer({ request }: HttpContextContract) {
@@ -26,20 +27,10 @@ export default class ReportsController {
   }
 
   public async manager({ request, response }: HttpContextContract) {
-    let { email, dateTo, dateFrom } = request.body()
-    try {
-      const services = await Service.query()
-        .whereBetween('date', [`${dateTo}`, `${dateFrom}`])
-        .preload('collaborator')
-        .preload('car')
-      Mail.send((message) => {
-        message.to(email)
-        message.from('uniaosistemas@gmail.com')
-        message.subject('Relatorio de serviços')
-        message.htmlView('services', { services })
-      })
-    } catch (error) {
-      response.status(400).send('Error!')
-    }
+    let { dateTo, dateFrom } = request.body()
+    const services = await Service.query().whereBetween('date', [`${dateTo}`, `${dateFrom}`])
+
+    const reportBuffer = await generateReport(services)
+    response.send(reportBuffer)
   }
 }

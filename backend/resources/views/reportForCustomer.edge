@@ -57,20 +57,17 @@
       <h3><strong>Olá {{ nameCustomer }}, segue os dados do serviço solicitado!</strong></h3>
       <hr>
 
-      <h3>Valor do serviço</h3>
+      <h3>Valor do serviço:</h3>
       <h4>R$ {{ servico.value }}</h4>
       <br>
 
-      <h3>Data do serviço</h3>
-      <h4 id="data">{{ servico.date }}</h4>
+      <h3>Data do serviço:</h3>
+      <h4>{{ servico.date }}</h4>
       <br>
 
-      <h3>Descrição do serviço</h3>
+      <h3>Descrição do serviço:</h3>
       <h4>{{ servico.describe }}</h4>
       <br>
     </div>
   </body>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
-      var data = moment(servico.date).format("L")
-  </script>
 </html>

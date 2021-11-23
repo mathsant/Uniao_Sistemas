@@ -9,5 +9,7 @@ export class StoreValidator {
     password: schema.string({ trim: true }),
   })
 
-  public messages = {}
+  public messages = {
+    'invalid.credentials': 'erro',
+  }
 }
