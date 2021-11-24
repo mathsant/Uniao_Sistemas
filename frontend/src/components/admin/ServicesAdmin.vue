@@ -68,7 +68,7 @@
           </b-button>
         </template>
       </b-table>
-      <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" aria-controls="my-table"></b-pagination>
+      <b-pagination align="center" v-model="currentPage" :total-rows="rows" :per-page="perPage" aria-controls="my-table"></b-pagination>
   </div>
 </template>
 
@@ -130,7 +130,7 @@ export default {
           this.$toasted.global.defaultSuccess();
           this.reset();
         })
-        .catch(showError);
+        .catch(this.errorMessage);
     },
     remove() {
       const id = this.service.id;
@@ -165,6 +165,9 @@ export default {
       this.$set(o, prop, e.target.value);
       e.target.setSelectionRange(start, start);
     },
+    errorMessage() {
+      this.$swal("Erro!", "Existem campos invalidos, favor revisar!", "error");
+    },
   },
   created() {
     this.loadCollaborators();
@@ -174,7 +177,7 @@ export default {
   filters: {
     moment: function(date) {
       moment.locale("pt-br");
-      return moment(date).format("L");
+      return moment(date).format("DD/MM/YYYY");
     },
   },
 };

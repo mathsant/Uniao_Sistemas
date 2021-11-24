@@ -43,7 +43,9 @@ export default {
         this.services = res.data.map((service) => {
           return {
             value: service.id,
-            text: `${service.id} - ${service.car.board} - ${service.describe} `,
+            text: `R$${service.value} | Placa: ${
+              service.car.board
+            } | Descrição: ${service.describe} `,
           };
         });
       });

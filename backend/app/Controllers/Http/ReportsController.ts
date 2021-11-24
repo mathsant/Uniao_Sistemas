@@ -19,7 +19,7 @@ export default class ReportsController {
       message.htmlView('reportForCustomer', {
         servico: {
           value: servicoValue,
-          date: moment(servicoData).format('L'),
+          date: moment(servicoData).format('DD/MM/YYYY'),
           describe: servicoDescribe,
         },
         nameCustomer,
@@ -29,7 +29,9 @@ export default class ReportsController {
 
   public async manager({ request, response }: HttpContextContract) {
     let { dateTo, dateFrom } = request.body()
-    const services = await Service.query().whereBetween('date', [`${dateTo}`, `${dateFrom}`])
+    const services = await Service.query()
+      .whereBetween('date', [`${dateTo}`, `${dateFrom}`])
+      .preload('car')
 
     const reportBuffer = await generateReport(services)
     response.send(reportBuffer)

@@ -89,7 +89,7 @@ export default {
             this.$toasted.global.defaultSuccess();
             this.reset();
           })
-          .catch(showError);
+          .catch(this.errorMessage);
       }
     },
     remove() {
@@ -102,6 +102,9 @@ export default {
     loadUser(user, mode = "save") {
       this.mode = mode;
       this.user = { ...user };
+    },
+    errorMessage() {
+      this.$swal("Erro!", "Existem campos invalidos, favor revisar!", "error");
     },
   },
   created() {
