@@ -9,7 +9,9 @@ export class UpdateValidator {
     email: schema.string({ trim: true, escape: true }, [rules.email()]),
     phone: schema.string({ trim: true, escape: true }),
     admissionDate: schema.string.optional(),
-    cpf: schema.string({ trim: true, escape: true }),
+    cpf: schema.string({ trim: true, escape: true }, [
+      rules.unique({ table: 'collaborators', column: 'cpf' }),
+    ]),
   })
 
   public messages = {
@@ -18,6 +20,7 @@ export class UpdateValidator {
     'phone.required': 'O telefone é obrigatorio!',
     'admissionDate.required': 'A data de admissão é obrigatoria!',
     'cpf.required': 'O CPF é obrigatorio!',
+    'cpf.unique': 'Esse CPF já está cadastrado!',
     'email': 'O e-mail não é válido!',
   }
 }

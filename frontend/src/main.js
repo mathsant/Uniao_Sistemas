@@ -7,6 +7,7 @@ import "./config/msgs";
 import router from "./config/router";
 import VueSweetalert2 from "vue-sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
+import "./config/axios";
 import "./config/bootstrap";
 import "./config/mq";
 Vue.config.productionTip = false;

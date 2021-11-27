@@ -84,7 +84,14 @@ export default {
           this.$toasted.global.defaultSuccess();
           this.reset();
         })
-        .catch(showError);
+        .catch(this.errorMessage);
+    },
+    errorMessage() {
+      this.$swal(
+        "Erro!",
+        "Existem campos invalidos, favor verificar!",
+        "error"
+      );
     },
   },
   created() {

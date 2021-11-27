@@ -6,7 +6,7 @@
         <b-row>
           <b-col md="6" sm="12">
             <b-form-group label="Nome:" label-for="collaborator-name">
-              <b-form-input id="collaborator-name" type="text" v-model="collaborator.name" placeholder="Informe o nome do colaborador..." :readonly="mode === 'remove'" required/>
+              <b-form-input id="collaborator-name" type="text" v-model="collaborator.name" placeholder="Informe o nome do colaborador..." :readonly="mode === 'remove'" @input="v => {collaborator.name = v.toUpperCase()}"  required/>
             </b-form-group>
           </b-col>
           <b-col md="6" sm="12">

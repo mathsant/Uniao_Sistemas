@@ -25,6 +25,11 @@ export default {
       }
       return true;
     },
+    hideMenu() {
+      if (this.$mq === "xs" || this.$mq === "sm") {
+        this.$store.commit("toggleMenu", false);
+      }
+    },
   },
 };
 </script>

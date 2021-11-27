@@ -107,7 +107,7 @@ export default {
       this.$swal("Erro!", "Existem campos invalidos, favor revisar!", "error");
     },
   },
-  created() {
+  mounted() {
     this.loadUsers();
   },
 };

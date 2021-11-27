@@ -14,7 +14,7 @@ export default class ReportsController {
 
     Mail.send((message) => {
       message.to(email)
-      message.from(email)
+      message.from('centroautouniao@gmail.com')
       message.subject('Relátorio de serviço')
       message.htmlView('reportForCustomer', {
         servico: {

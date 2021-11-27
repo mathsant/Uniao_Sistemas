@@ -6,7 +6,10 @@ export class StoreValidator {
 
   public schema = schema.create({
     name: schema.string({ trim: true, escape: true }),
-    email: schema.string({ trim: true, escape: true }, [rules.email()]),
+    email: schema.string({ trim: true, escape: true }, [
+      rules.email(),
+      rules.unique({ table: 'customers', column: 'email' }),
+    ]),
     phone: schema.string({ trim: true, escape: true }),
     address: schema.string({ trim: true, escape: true }),
     cpf: schema.string({ trim: true, escape: true }, [
@@ -21,6 +24,7 @@ export class StoreValidator {
     'address.required': 'O endereço é obrigatorio!',
     'cpf.required': 'O CPF é obrigatorio!',
     'cpf.unique': 'Esse CPF já está cadastrado!',
+    'email.unique': 'Esse e-mail já está cadastrado!',
     'email': 'Esse e-mail não é válido!',
   }
 }
