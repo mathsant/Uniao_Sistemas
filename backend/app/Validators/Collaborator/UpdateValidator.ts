@@ -9,9 +9,7 @@ export class UpdateValidator {
     email: schema.string({ trim: true, escape: true }, [rules.email()]),
     phone: schema.string({ trim: true, escape: true }),
     admissionDate: schema.string.optional(),
-    cpf: schema.string({ trim: true, escape: true }, [
-      rules.unique({ table: 'collaborators', column: 'cpf' }),
-    ]),
+    cpf: schema.string({ trim: true, escape: true }),
   })
 
   public messages = {

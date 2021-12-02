@@ -92,7 +92,6 @@ export default {
       filter: "",
       collaborators: [],
       fields: [
-        { key: "id", label: "Número da OS", sortable: true },
         { key: "value", label: "Valor", sortable: true },
         { key: "status", label: "Status", sortable: true },
         { key: "car.board", label: "Automovel" },

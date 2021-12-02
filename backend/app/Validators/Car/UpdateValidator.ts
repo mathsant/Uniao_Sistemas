@@ -13,5 +13,14 @@ export class UpdateValidator {
     customer_id: schema.number(),
   })
 
-  public messages = {}
+  public messages = {
+    'board.required': 'A placa é obrigatoria!',
+    'brand.required': 'A marca é obrigatoria!',
+    'model.required': 'O modelo é obrigatorio!',
+    'year.required': 'O ano é obrigatorio!',
+    'color.required': 'A cor é obrigatoria!',
+    'customer_id.required': 'O proprietario é obrigatorio!',
+    'board.unique': 'Essa placa já está cadastrada!',
+    'customer_id.exists': 'Esse cliente não existe!',
+  }
 }

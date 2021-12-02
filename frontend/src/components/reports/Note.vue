@@ -1,6 +1,6 @@
 <template>
     <div>
-      <page-title icon="fa fa-envelope-square" main="Nota branca de serviços" sub="Envio de nota infomativa do serviço para o(a) cliente" />
+      <page-title icon="fa fa-envelope-square" main="Nota branca de Serviço" sub="Envio de nota infomativa do serviço para o(a) cliente" />
       <b-card border-variant="dark" header="Enviar nota com informações do serviço para o(a) cliente" align="center">
           <hr>
           <h3>Informe o nome do(a) cliente...</h3>
@@ -12,7 +12,7 @@
           <br>
           <br>
           <h3>Informe o e-mail no qual sera enviado o relatorio...</h3>
-          <b-form-select v-model="report.email" :options="customers" placeholder="Informe o e-mail"></b-form-select>
+          <b-form-select v-model="report.email" :options="customers" placeholder="Informe o e-mail" aria-required=""></b-form-select>
           <br>
           <br>
           <b-button block pill variant="success" @click="sendMail">Enviar</b-button>
@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import { showError } from "../../global";
 import PageTitle from "../../components/template/PageTitle.vue";
 
 export default {
